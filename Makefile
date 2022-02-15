@@ -1,7 +1,7 @@
-all: a.out
+all: chessviz.out
 
-a.out: hello.c
-	gcc -Wall -Werror hello.c
+chessviz.out: chessviz.cpp
+	g++ -Wall -Werror -o chessviz.out chessviz.cpp
 
-run: a.out
-	./a.out
+run: chessviz.out
+	./chessviz.out
