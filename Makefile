@@ -1,4 +1,4 @@
-all: chessviz.out run delete
+all: chessviz.out
 
 chessviz.out: chessviz.cpp
 	g++ -Wall -Werror -o chessviz.out chessviz.cpp
@@ -6,5 +6,5 @@ chessviz.out: chessviz.cpp
 run: chessviz.out
 	./chessviz.out
 
-delete: chessviz.out
+clean: chessviz.out
 	rm chessviz.out
