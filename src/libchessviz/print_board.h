@@ -11,7 +11,7 @@ struct motion {
     int x2;
 };
 
-void translation(std::string line, motion& motion);
+void convertFigure(std::string line, motion& motion);
 
 void printBoard(char boardrr[board_size][board_size]);
 

@@ -4,12 +4,18 @@
 
 using namespace std;
 
-void translation(string line, motion& motion)
+int countFigure(string line, int num_line, char edge)
 {
-    motion.y1 = board_size - ((int)line[1] - (int)'0');
-    motion.x1 = (int)line[0] - (int)'a';
-    motion.y2 = board_size - ((int)line[4] - (int)'0');
-    motion.x2 = (int)line[3] - (int)'a';
+    int diff = (int)line[num_line] - (int)edge;
+    return diff;
+}
+
+void convertFigure(string line, motion& motion)
+{
+    motion.y1 = board_size - countFigure(line, 1, '0');
+    motion.x1 = countFigure(line, 0, 'a');
+    motion.y2 = board_size - countFigure(line, 4, '0');
+    motion.x2 = countFigure(line, 3, 'a');
 }
 
 void printBoard(char boardrr[board_size][board_size])

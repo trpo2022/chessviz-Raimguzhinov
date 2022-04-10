@@ -29,7 +29,7 @@ int readCommand(
             pos_ver2,
             move_cnt,
             boardrr);
-    translation(line, motion);
+    convertFigure(line, motion);
     if (checkStep(line, motion, boardrr) == true) {
         turnFigure(pos_gor1, pos_ver1, pos_gor2, pos_ver2, boardrr);
         return 0;
