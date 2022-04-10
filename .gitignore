@@ -1,5 +1,4 @@
 .ccls-cache/
-*.txt
 *.out
 *.o
 *.a
