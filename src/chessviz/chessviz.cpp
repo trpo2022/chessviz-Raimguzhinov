@@ -1,4 +1,5 @@
 #include <iostream>
+#include <libchessviz/figure_rules.h>
 #include <libchessviz/open_game.h>
 #include <libchessviz/print_board.h>
 
@@ -18,7 +19,7 @@ int main()
                {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
                {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
                {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}};
-    string path = "src/chessviz/scholars_mate.txt"; //путь к сценарию
+    string path = "scholars_mate.txt"; //путь к сценарию
     openNotation(path, motion, boardrr);
     cout << endl;
     printBoard(boardrr);
