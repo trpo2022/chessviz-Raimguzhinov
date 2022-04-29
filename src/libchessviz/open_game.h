@@ -1,5 +1,6 @@
 #pragma once
 
+#include <libchessviz/figure_rules.h>
 #include <libchessviz/print_board.h>
 
 int readCommand(
@@ -8,5 +9,5 @@ int readCommand(
         int move_cnt,
         char boardrr[board_size][board_size]);
 
-void openNotation(
+int openNotation(
         std::string path, motion motion, char boardrr[board_size][board_size]);
