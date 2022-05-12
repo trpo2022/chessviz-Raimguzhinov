@@ -278,16 +278,16 @@ bool checkStep(
         break;
     case 6:
         if (checkmate == false) {
-            if (silent == true) {
-                if (output == true)
-                    cout << "\nНеизвестный тип шага" << endl;
-                return false;
-            }
             if ((motion.x1 > 7) || (motion.x1 < 0) || (motion.x2 > 7)
                 || (motion.x2 < 0) || (motion.y1 > 7) || (motion.y1 < 0)
                 || (motion.y2 > 7) || (motion.y2 < 0)) {
-                if (output == true)
+                if (error_output == false)
                     cout << "\nВыход за пределы доски" << endl;
+                return false;
+            }
+            if (silent == true) {
+                if (output == true)
+                    cout << "\nНеизвестный тип шага" << endl;
                 return false;
             }
             if (boardrr[motion.y1][motion.x1] == ' ') {
@@ -359,62 +359,4 @@ bool checkStep(
         break;
     }
     return true;
-    /*
-        switch (step.size()) {
-        case 5:
-            if ((motion.x1 > 7) || (motion.x1 < 0) || (motion.x2 > 7)
-                || (motion.x2 < 0) || (motion.y1 > 7) || (motion.y1 < 0)
-                || (motion.y2 > 7) || (motion.y2 < 0)) {
-                cout << "\nВыход за пределы доски" << endl;
-                return false;
-            }
-            if (step[2] == '-') {
-                if (motion.x1 != motion.x2) {
-                    cout << "\nПешки двигаются только прямо" << endl;
-                    return false;
-                }
-                if (boardrr[motion.y1][motion.x1] == 'P') {
-                    if (motion.y1 == 6) {
-                        if ((motion.y1 - motion.y2 > 2)
-                            || (motion.y1 - motion.y2 < 1)) {
-                            cout << "\nНачиная с первого хода, пешки могут "
-                                    "перемещаться на 1-2 клетки"
-                                 << endl;
-                            return false;
-                        }
-                    } else {
-                        if (motion.y1 - motion.y2 != 1) {
-                            cout << "\nПосле первого хода пешки могут "
-                                    "двигаться "
-                                    "только на 1 клетку вперед"
-                                 << endl;
-                            return false;
-                        }
-                    }
-                } else if (boardrr[motion.y1][motion.x1] == 'p') {
-                    if (motion.y1 == 1) {
-                        if ((motion.y2 - motion.y1 > 2)
-                            || (motion.y2 - motion.y1 < 1)) {
-                            cout << "\nНачиная с первого хода, пешки могут "
-                                    "перемещаться на 1-2 клетки"
-                                 << endl;
-                            return false;
-                        }
-                    } else {
-                        if (motion.y2 - motion.y1 != 1) {
-                            cout << "\nПосле первого хода пешки могут "
-                                    "двигаться "
-                                    "только на 1 клетку вперед"
-                                 << endl;
-                            return false;
-                        }
-                    }
-                }
-            }
-            break;
-        default:
-            return true;
-            break;
-        }
-        return true;*/
 }
