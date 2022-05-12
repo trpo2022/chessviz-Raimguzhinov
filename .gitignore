@@ -1,7 +1,7 @@
 .ccls-cache/
 .DS_Store/
 *.out
-bin/*.[aod]
+bin/*
 *.[aod]
 main
 test.txt
