@@ -1,7 +1,7 @@
 .ccls-cache/
+.DS_Store/
 *.out
-*.o
-*.a
-*.d
-bin/chessviz
+bin/*.[aod]
+*.[aod]
 main
+test.txt
