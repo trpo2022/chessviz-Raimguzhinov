@@ -2,6 +2,8 @@
 #include <libchessviz/print_board.h>
 #include <unistd.h>
 
+#define loadtime 3
+
 using namespace std;
 
 int countFigure(string line, int num_line, char edge)
@@ -33,12 +35,17 @@ void printBoard(char boardrr[board_size][board_size])
 
 void loadingAnimation(int move_cnt)
 {
-    if (move_cnt % 2 != 0)
-        cout << "Ваш ход    ";
-    if (move_cnt % 2 == 0)
-        cout << "Ход соперника     ";
+    if (move_cnt == 1 || move_cnt == 0)
+        cout << "Добро пожаловать в шахматы, это начало партии. Просиходит "
+                "магия     ";
+    else {
+        if (move_cnt % 2 != 0)
+            cout << "Ход соперника   ";
+        if (move_cnt % 2 == 0)
+            cout << "Ваш ход    ";
+    }
     cout << '-' << flush;
-    for (int r = 0; r < 7; r++) {
+    for (int r = 0; r < loadtime; r++) {
         usleep(100000);
         cout << "\b\\" << flush;
         usleep(100000);
@@ -70,8 +77,8 @@ void takeStep(
     char column2 = step2[0];
     board_line_pos2 = left.find(line2);
     board_column_pos2 = bottom.find(column2);
-    cout << endl;
     move_cnt_load++;
+    cout << endl;
     loadingAnimation(move_cnt_load);
     cout << endl;
     printBoard(boardrr);
@@ -83,63 +90,4 @@ void turnFigure(
     char buf_step = boardrr[x1][y1];
     boardrr[x1][y1] = ' ';
     boardrr[x2][y2] = buf_step;
-}
-
-bool checkStep(string step, motion motion, char boardrr[board_size][board_size])
-{
-    switch (step.size()) {
-    case 5:
-        if ((motion.x1 > 7) || (motion.x1 < 0) || (motion.x2 > 7)
-            || (motion.x2 < 0) || (motion.y1 > 7) || (motion.y1 < 0)
-            || (motion.y2 > 7) || (motion.y2 < 0)) {
-            cout << "\nВыход за пределы доски" << endl;
-            return false;
-        }
-        if (step[2] == '-') {
-            if (motion.x1 != motion.x2) {
-                cout << "\nПешки двигаются только прямо" << endl;
-                return false;
-            }
-            if (boardrr[motion.y1][motion.x1] == 'P') {
-                if (motion.y1 == 6) {
-                    if ((motion.y1 - motion.y2 > 2)
-                        || (motion.y1 - motion.y2 < 1)) {
-                        cout << "\nНачиная с первого хода, пешки могут "
-                                "перемещаться на 1-2 клетки"
-                             << endl;
-                        return false;
-                    }
-                } else {
-                    if (motion.y1 - motion.y2 != 1) {
-                        cout << "\nПосле первого хода пешки могут двигаться "
-                                "только на 1 клетку вперед"
-                             << endl;
-                        return false;
-                    }
-                }
-            } else if (boardrr[motion.y1][motion.x1] == 'p') {
-                if (motion.y1 == 1) {
-                    if ((motion.y2 - motion.y1 > 2)
-                        || (motion.y2 - motion.y1 < 1)) {
-                        cout << "\nНачиная с первого хода, пешки могут "
-                                "перемещаться на 1-2 клетки"
-                             << endl;
-                        return false;
-                    }
-                } else {
-                    if (motion.y2 - motion.y1 != 1) {
-                        cout << "\nПосле первого хода пешки могут двигаться "
-                                "только на 1 клетку вперед"
-                             << endl;
-                        return false;
-                    }
-                }
-            }
-        }
-        break;
-    default:
-        return true;
-        break;
-    }
-    return true;
 }
