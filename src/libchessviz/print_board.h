@@ -11,6 +11,8 @@ struct motion {
     int x2;
 };
 
+int countFigure(std::string line, int num_line, char edge);
+
 void convertFigure(std::string line, motion& motion);
 
 void printBoard(char boardrr[board_size][board_size]);
@@ -29,6 +31,3 @@ void takeStep(
 
 void turnFigure(
         int x1, int y1, int x2, int y2, char boardrr[board_size][board_size]);
-
-bool checkStep(
-        std::string step, motion motion, char boardrr[board_size][board_size]);
