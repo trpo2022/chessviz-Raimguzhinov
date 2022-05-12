@@ -1,9 +1,11 @@
 APP_NAME = chessviz
 LIB_NAME = libchessviz
+TEST_NAME = chessviz-test
 
 CXX = g++
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I src -MP -MMD
+CPPFLAGST = -I thirdparty -MP -MMD
 LDFLAGS =
 LDLIBS = -lm
 
@@ -13,6 +15,7 @@ SRC_DIR = src
 
 APP_PATH = $(BIN_DIR)/$(APP_NAME)
 LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).a
+TEST_PATH = $(BIN_DIR)/$(TEST_NAME)
 
 SRC_EXT = cpp
 
@@ -42,6 +45,23 @@ $(OBJ_DIR)/%.o: %.$(SRC_EXT)
 .PHONY: run
 run: 
 	./$(APP_PATH)
+
+.PHONY: test
+test-start:
+	./$(TEST_PATH)
+
+test: $(TEST_PATH)
+
+$(TEST_PATH): obj/test/main.o obj/test/test.o $(LIB_PATH)
+	g++ $(CFLAGS) -o $@ $^
+
+obj/test/test.o: test/test.cpp
+	g++ -c $(CFLAGS) $(CPPFLAGS) $(CPPFLAGST) $< -o $@
+
+obj/test/main.o: test/main.cpp
+	g++ -c $(CFLAGS) $(CPPFLAGS) $(CPPFLAGST) $< -o $@
+
+-include $(DEPS) obj/test/test.d obj/test/main.d
 
 .PHONY: clean
 clean:
