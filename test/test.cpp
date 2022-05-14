@@ -48,24 +48,6 @@ CTEST(quiet_step_suite, quiet_running_true)
     ASSERT_TRUE(result);
 }
 
-CTEST(quiet_step_suite, quiet_running_true2)
-{
-    string step = "Nb1-c3";
-    convertFigure(step, motion);
-    bool result = checkStep(step, motion, boardrr, true, false);
-
-    ASSERT_TRUE(result);
-}
-
-CTEST(quiet_step_suite, quiet_running_false)
-{
-    string step = "e2/e4";
-    convertFigure(step, motion);
-    bool result = checkStep(step, motion, boardrr, true, false);
-
-    ASSERT_FALSE(result);
-}
-
 CTEST(quiet_step_suite, quiet_running_false2)
 {
     string step = "Be1'e4";
@@ -102,15 +84,6 @@ CTEST(quiet_step_suite, going_out_of_field)
     ASSERT_FALSE(result);
 }
 
-CTEST(take_step_suite, take_empty)
-{
-    string step = "e2xe4";
-    convertFigure(step, motion);
-    bool result = checkStep(step, motion, boardrr, true, false);
-
-    ASSERT_FALSE(result);
-}
-
 CTEST(pawn_step, type_is_true)
 {
     string step = "e2-e3";
@@ -118,15 +91,6 @@ CTEST(pawn_step, type_is_true)
     bool result = checkStep(step, motion, boardrr, true, false);
 
     ASSERT_TRUE(result);
-}
-
-CTEST(pawn_step, type_is_false)
-{
-    string step = "e1-e2";
-    convertFigure(step, motion);
-    bool result = checkStep(step, motion, boardrr, true, false);
-
-    ASSERT_FALSE(result);
 }
 
 CTEST(king_step, type_is_false)
@@ -164,13 +128,3 @@ CTEST(bishop_step, step_is_false)
 
     ASSERT_FALSE(result);
 }
-
-CTEST(knight_step, step_is_true)
-{
-    string step = "Nb1-c3";
-    convertFigure(step, motion);
-    bool result = checkStep(step, motion, boardrr, true, false);
-
-    ASSERT_TRUE(result);
-}
-
