@@ -1,0 +1,7 @@
+.ccls-cache/
+.DS_Store/
+*.out
+bin/*
+*.[aod]
+main
+test.txt
